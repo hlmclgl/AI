@@ -2090,7 +2090,201 @@ print(ordered_dist)
 # array([  0.,   5.,  10.,  15.,  20.,  25.,  30.,  35.,  40.,  45.,  50.,
 #         55.,  60.,  65.,  70.,  75.,  80.,  85.,  90.,  95., 100.])
 
+# NumPy Arrayleri Üzerinde İşlemler
+# Şu ana kadar hep tek boyutlu arraylerde çalıştık. Ama bunlar çok boyutlu da olabilir, NumPy bu işin üstesinden de rahatlıkla gelebiliyor. İşte bu yüzden numpy matematiksel işlemlerde kraldır. Pek çok ortak şeyi alabilir ve bunları vektörleştirilmiş bir sürece dönüştürebiliriz.
+
+# Bu özelliği bir vektörle, bir vektör tablosu arasındaki mesafeyi hesaplarken de kullanabiliriz.
+
+# Vektör tanımlamaları
+new_vec = np.array([1,2])
+all_vecs = np.random.uniform(size=(100,2))
+print(all_vecs)
+# array([[8.05209240e-01, 2.66468137e-01],
+#        [4.66905109e-01, 6.85075912e-01],
+#        [1.32854035e-01, 2.48374205e-01],
+#        [4.04015920e-01, 2.18656874e-01],
+#        [8.35444297e-01, 7.54683706e-01],
+#        [7.56477918e-02, 4.49126978e-01],
+#        [3.31385047e-01, 6.36196854e-02],
+#        [5.52704095e-01, 9.85409198e-01],
+#        [7.87206411e-01, 7.40281860e-02],
+#        [6.85626113e-01, 2.77422492e-01],
+#        [4.53083005e-01, 3.41067963e-01],
+#        [8.24821428e-01, 8.26017631e-01],
+#        [9.53304844e-01, 6.61140824e-02],
+#        [9.79095499e-01, 9.05387841e-01],
+#        [8.20781529e-01, 9.29307609e-01],
+#        [5.56408082e-01, 4.44679743e-01],
+#        [9.00563460e-01, 8.67522659e-01],
+#        [1.81006754e-01, 4.28183935e-01],
+#        [1.04055668e-01, 9.78819086e-01],
+#        [9.93302056e-01, 4.46023275e-01],
+#        [9.43462172e-02, 2.56748373e-01],
+#        [4.44770836e-01, 7.00855292e-04],
+#        [3.77368131e-01, 4.90897320e-01],
+#        [2.68209825e-01, 9.73074157e-01],
+#        [9.76056218e-01, 1.27182056e-01],
+#        [3.18890464e-01, 5.76714754e-01],
+#        [3.84252219e-01, 3.39371450e-01],
+#        [5.76705161e-01, 1.24107468e-01],
+#        [5.49934754e-01, 2.35934594e-01],
+#        [3.76297760e-01, 1.71800004e-01],
+#        [5.59089740e-01, 7.37885314e-02],
+#        [5.97452875e-01, 3.97499358e-01],
+#        [1.28565611e-02, 6.20869967e-02],
+#        [7.14512294e-01, 2.50193719e-01],
+#        [7.84796663e-01, 5.45753680e-01],
+#        [1.40680804e-01, 3.49283696e-01],
+#        [1.97883311e-01, 2.83326322e-01],
+#        [7.35473885e-01, 9.57977576e-01],
+#        [3.54237146e-01, 2.04155331e-01],
+#        [1.37567904e-01, 8.71350184e-01],
+#        [7.39744616e-01, 8.86025890e-02],
+#        [5.70914283e-01, 9.68126072e-02],
+#        [8.14141207e-01, 8.77042736e-01],
+#        [5.36206001e-01, 9.07187462e-01],
+#        [2.07569736e-01, 8.46272695e-01],
+#        [6.26719338e-01, 2.47425615e-01],
+#        [4.62384537e-01, 5.55653225e-01],
+#        [8.18470046e-01, 3.82044324e-01],
+#        [1.96578035e-01, 8.13032712e-01],
+#        [5.72236747e-01, 4.04874624e-01],
+#        [5.79345016e-02, 7.28768977e-01],
+#        [9.29615582e-02, 7.48256568e-01],
+#        [5.28709225e-03, 4.91837786e-01],
+#        [4.10693329e-02, 6.46930753e-01],
+#        [2.78594569e-01, 4.81000140e-01],
+#        [4.38320612e-01, 2.06002852e-01],
+#        [3.30042891e-02, 1.59698313e-01],
+#        [8.03340163e-01, 7.64369914e-01],
+#        [9.86107176e-01, 2.31300829e-01],
+#        [3.54708327e-01, 7.64850670e-01],
+#        [6.80471650e-01, 4.98200668e-01],
+#        [9.24519213e-01, 2.71279826e-01],
+#        [1.58067187e-02, 9.57774583e-03],
+#        [4.70294451e-01, 1.58868501e-01],
+#        [1.31789322e-01, 7.47463607e-01],
+#        [9.99326913e-01, 2.31423050e-01],
+#        [5.67802644e-01, 6.55021413e-01],
+#        [3.01113908e-01, 9.84608114e-01],
+#        [5.61321085e-01, 4.35490991e-01],
+#        [9.07328769e-01, 7.24831657e-01],
+#        [6.56528198e-01, 3.32783112e-01],
+#        [8.35293260e-01, 5.57805178e-01],
+#        [7.74744475e-01, 7.41798563e-02],
+#        [6.36083257e-01, 3.87653979e-01],
+#        [7.77083920e-01, 1.34247231e-01],
+#        [6.25795797e-01, 1.45958618e-01],
+#        [6.72608741e-01, 6.57527890e-01],
+#        [3.92227254e-01, 2.43815879e-01],
+#        [7.38680424e-01, 8.35175921e-01],
+#        [2.15231125e-01, 2.74884387e-01],
+#        [7.61064520e-01, 7.65350864e-01],
+#        [5.33451795e-01, 3.18439247e-01],
+#        [3.84717702e-01, 4.11438631e-01],
+#        [3.57027460e-01, 7.33834156e-02],
+#        [4.10929756e-01, 1.22972474e-01],
+#        [7.28800895e-02, 1.66033884e-01],
+#        [5.91855860e-01, 1.87702417e-01],
+#        [2.30429339e-01, 1.98691509e-01],
+#        [9.85629666e-01, 6.36623398e-01],
+#        [6.17642542e-01, 4.91082228e-01],
+#        [6.42378170e-02, 5.97259315e-01],
+#        [2.92717805e-01, 4.23366289e-01],
+#        [1.70221389e-01, 9.26926917e-01],
+#        [4.65120595e-01, 4.11562244e-01],
+#        [5.89251000e-01, 1.14890422e-01],
+#        [1.31845002e-01, 7.90899150e-01],
+#        [1.34885947e-01, 5.12107152e-01],
+#        [7.60104827e-01, 7.20646534e-01],
+#        [3.20733123e-02, 2.23178333e-01],
+#        [1.12840412e-01, 6.20438396e-01]])
+# Eğer tek bir vektör çifti üzerinden bu işlemi gerçekleştirirsek;
+
+vector_part = all_vecs[0]
+vct =np.sqrt((new_vec[0] - vector_part[0])**2 + (new_vec[1] - vector_part[1])**2) # 2 vektör arasındaki mesafe
+print(vct)
+# 1.7444415034365757
+
+# Şimdi hadi ilk 10 vektör çifti üzerinde aynı işlemi uygulayalım;
+
+vct10 = np.sqrt(np.sum((all_vecs - new_vec)**2, axis=1))[:10]
+print (vct10)
+
+# array([1.7444415 , 1.41887826, 1.95451658, 1.87839835, 1.25614141,
+#        1.80544569, 2.04856405, 1.10881384, 1.93769155, 1.75102947])
+# Numpy kütüphanesi kullanarak yapılan bu işlemler büyük veri kümelerinde ciddi bir zaman tasarrafu sağlar. Nasıl mı?
+
+# timeit(
+#     output = []
+#     for vec in all_vecs:
+#         dist = np.sqrt((new_vec[0] - vec[0])**2 + (new_vec[1] - vec[1])**2)
+#         output.append(dist)
+#     )
+
+# 542 µs ± 5.47 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+
+timeit(np.sqrt(np.sum((all_vecs - new_vec)**2, axis=1)))
+
+# 8.11 µs ± 30.9 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
+
+# Ya veri kümesinin boyutunu daha da arttırırsak?
+
+all_vecs = np.random.uniform(size=(10000,2))
+# %%timeit
+# output = []
+# for vec in all_vecs:
+#     dist = np.sqrt((new_vec[0] - vec[0])**2 + (new_vec[1] - vec[1])**2)
+#     output.append(dist)
+# 53.6 ms ± 178 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+
+timeit(np.sqrt(np.sum((all_vecs - new_vec)**2, axis=1)))
+
+# 176 µs ± 1.9 µs per loop (mean ± std. dev. of 7 runs, 10,000 loops each)
+# 1000 µs (mikro-saniye) = 1 ms (mili-saniye) eşit olduğunu göz önünde bulunduralım!
+# NumPy arraylerinin hızına her beraber şahit olduk. Son olarak ise şu ana kadar konuştuklarımızı bir grafik gösterimi üzerinde toparlayalım.
+
+# Listelerden Yararlanarak Vektörler Arası Mesafe Hesabı
+import time
+list_timing = []
+for num_vecs in np.linspace(10,10000,100):
+    all_vecs = np.random.uniform(size=(int(num_vecs),2)).tolist()
+    # İşlemin başladığı zaman
+    start = time.time()
+    
+    # Vektörler arası mesafe
+    output = []
+    for vec in all_vecs:
+        dist = np.sqrt((new_vec[0] - vec[0])**2 + (new_vec[1] - vec[1])**2)
+        output.append(dist)
+        
+    # İşlem tamamlanana kadar ne kadar süre geçti
+    end = time.time()
+    list_timing.append((num_vecs, end - start))
 
 
+# NumPy Dizilerinden Yararlanarak Vektörler Arası Mesafe Hesabı
+array_timing = []
+for num_vecs in np.linspace(10,10000,100):
+    all_vecs = np.random.uniform(size=(int(num_vecs),2))
+    # İşlemin başladığı zaman
+    start = time.time()
+    
+    # Vektörler arası mesafe
+    output = np.sqrt(np.sum((all_vecs - new_vec)**2, axis=1))
 
+    # İşlem tamamlanana kadar ne kadar süre geçti
+    end = time.time()
+    array_timing.append((num_vecs, end - start))
+# Vee sonuç...
+
+plt.figure(dpi=150)
+list_X, list_times = zip(*list_timing)
+array_X, array_times = zip(*array_timing)
+
+plt.plot(list_X, list_times, 'r', label="Lists")
+plt.plot(array_X, array_times,'b', label='Arrays')
+plt.xlabel("İşleme Dahil Edilen Vektör Sayısı")
+plt.ylabel("Hesaplama Süresi")
+plt.legend();
 
